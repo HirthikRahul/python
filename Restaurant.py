@@ -12,21 +12,6 @@ class Cart:
         pass
 
 
-'''
- class Selections:
-
-    foodDict={0:"Burger",
-          1:"Pizza",
-          2:"Sandwich"}
-
-    baseDict={"basic":"$10",
-              "premium":"$20",
-              "luxury":"$30"}
-    
-    toppingsDict={"olives":"$1",
-                  "onions":"$2",
-                  "tomatoes":"$3"}'''
-
 class FoodItem:
     def __init__(self):
         pass
@@ -37,9 +22,12 @@ class Pizza(FoodItem):
     def __init__(self):
         self.foodtype="Pizza"
         self.base_price=8
+    def get_description(self):
+        return self.foodtype
 
     def get_price(self):
         return self.base_price
+        
 class Burger(FoodItem):
     def __init__(self):
         self.foodtype="Burger"
@@ -58,12 +46,13 @@ class Sandwich(FoodItem):
 class Toppings(FoodItem):
     def __init__(self,fooditem:FoodItem):
         self.fooditem=fooditem
-  
-
-#drivercode:
-#print("base price is",Selections.baseDict["basic"])
+    
 
 
+class Lettuce(Toppings):
+    def __init__(self,fooditem:FoodItem):
+        self.fooditem=fooditem
 
-
-
+    def get_price(self):
+        return self.fooditem.get_price()+25
+# added a topping and getting the correct price, need to check for more toppings
