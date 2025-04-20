@@ -12,7 +12,7 @@ class Cart:
         pass
 
 
-class FoodItem:
+class FoodItem: 
     def __init__(self):
         pass
     def get_price(self):
@@ -43,16 +43,94 @@ class Sandwich(FoodItem):
     def get_price(self):
         return self.base_price
     
+
+class Sauce(FoodItem):
+    def __init__(self,fooditem:FoodItem):
+        self.fooditem=fooditem
+    
+class Alfredo(Sauce):
+    def __init__(self, fooditem:FoodItem):
+        self.fooditem=fooditem
+    
+    def get_price(self):
+        return self.fooditem.get_price()+1.25
+    
+class Marinara(Sauce):
+    def __init__(self,fooditem:FoodItem):
+        self.fooditem=fooditem
+    def get_price(self):
+        return self.fooditem.get_price()+1.89
+        
+
+
+
 class Toppings(FoodItem):
     def __init__(self,fooditem:FoodItem):
         self.fooditem=fooditem
     
 
 
-class Lettuce(Toppings):
+class Olives(Toppings):
     def __init__(self,fooditem:FoodItem):
         self.fooditem=fooditem
 
     def get_price(self):
-        return self.fooditem.get_price()+25
+        return self.fooditem.get_price()+0.25
+
+class Onions(Toppings):
+    def __init__(self,fooditem:FoodItem):
+        self.fooditem=fooditem
+
+    def get_price(self):
+        return self.fooditem.get_price()+0.55
+    
+class Tomatoes(Toppings):
+    def __init__(self,fooditem:FoodItem):
+        self.fooditem=fooditem
+
+    def get_price(self):
+        return self.fooditem.get_price()+0.15
+    
 # added a topping and getting the correct price, need to check for more toppings
+
+main_items={
+    1:"Pizza",
+    2:"Burger",
+    3:"Sandwich"
+}
+
+sauce_items={
+    1:"Alfredo",
+    2:"Marinara"
+    
+}
+
+toppings_items={
+    1:"Olives",
+    2:"Onions",
+    3:"Tomatoes"
+}
+
+if __name__=="__main__":
+    print(main_items)
+    base_choice=int(input("Choose among the following:"))
+    if base_choice==1:
+        order=Pizza()
+        print(order.get_price())
+    if base_choice==2:
+        order=Burger()
+        print(order.get_price())
+    if base_choice==3:
+        order=Sandwich()  
+        print(order.get_price()) 
+    
+    print(sauce_items)
+    sauce_choice=int(input("Choose among the following:"))
+    if base_choice==1:
+        order=Alfredo(order)
+        print(order.get_price())
+    if base_choice==2:
+        order=Marinara(order)
+        print(order.get_price())
+
+    
