@@ -10,6 +10,9 @@ class Cart:
         self.cartdict=[]
         self.cartdict.append(elements)
         pass
+    def get_elements_in_cart(self):
+        for i in len(self.cartdict):
+            print(self.cartdict[i])
 
 
 class FoodItem: 
@@ -112,25 +115,39 @@ toppings_items={
 }
 
 if __name__=="__main__":
-    print(main_items)
-    base_choice=int(input("Choose among the following:"))
-    if base_choice==1:
-        order=Pizza()
-        print(order.get_price())
-    if base_choice==2:
-        order=Burger()
-        print(order.get_price())
-    if base_choice==3:
-        order=Sandwich()  
-        print(order.get_price()) 
     
-    print(sauce_items)
-    sauce_choice=int(input("Choose among the following:"))
-    if base_choice==1:
-        order=Alfredo(order)
-        print(order.get_price())
-    if base_choice==2:
-        order=Marinara(order)
-        print(order.get_price())
+    while True:
+        breakcondition=input("Y/N")
+        if breakcondition=='N':
+            print("break out of the loop")
+            break
+        print(main_items)
+        base_choice=int(input("Choose among the following:"))
+        if base_choice==1:
+            order=Pizza()
+            print(order.get_price())
+        if base_choice==2:
+            order=Burger()
+            print(order.get_price())
+        if base_choice==3:
+            order=Sandwich()  
+            print(order.get_price()) 
+    
+        print(sauce_items)
+        sauce_choice=int(input("Choose among the following:"))
+        if base_choice==1:
+            order=Alfredo(order)
+            cart1=Cart(order)
+            print(order.get_price())
+            print(cart1.get_elements_in_cart)
+        
+        if base_choice==2:
+            order=Marinara(order)
+            cart1=Cart(order)
+            print(order.get_price())
+            print(cart1.get_elements_in_cart)
 
     
+    
+    
+#need to add items to the cart.
